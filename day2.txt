@@ -1,6 +1,5 @@
 Day 2 Report — California Housing Price Prediction (Regression)
 
-Date: 2026-02-27
 Project: California Housing Price Prediction
 Goal: Predict median_house_value using regression models and compare improvements.
 
