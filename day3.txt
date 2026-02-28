@@ -1,5 +1,5 @@
 Day 3: Regression — Part 2 (Tree-Based Models)
-Date: 2026-02-28
+
 
 What I learned today
 1) Decision Tree (Regression)
