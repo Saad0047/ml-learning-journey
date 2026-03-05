@@ -1,0 +1,141 @@
+Day 6 Report: Modern Tabular Data Champions (Structured Data)
+
+
+1) What we studied today (big picture)
+Today’s focus was learning the strongest “go-to” models for tabular/structured data (data that looks like an Excel sheet: rows and columns). These models are widely used in industry and frequently win Kaggle-style competitions for problems like:
+- Credit card fraud detection (fraud vs not fraud)
+- Loan default prediction (default vs not default)
+
+We also learned how to tune these models automatically to improve performance.
+
+-----------------------------------------------------------------------
+
+2) The “Trinity” of Tabular Models: XGBoost, LightGBM, CatBoost
+We learned three famous models that usually perform extremely well on tabular datasets:
+
+A) XGBoost
+- A powerful, reliable model that often gives strong results.
+- Commonly used as a baseline and often competitive immediately.
+
+B) LightGBM
+- Designed to be faster and efficient, especially on large datasets.
+- Often used when training speed matters or the dataset is large.
+
+C) CatBoost
+- Very good when the dataset has category-type columns (like city, job type, card type).
+- Often works well with less manual effort for those kinds of columns.
+
+Key shared idea:
+All three are built on combining many small decision trees to form one strong model.
+
+-----------------------------------------------------------------------
+
+3) Gradient Boosting (the core idea behind these models)
+We learned the main concept powering XGBoost/LightGBM/CatBoost:
+
+- The model builds many trees one after another.
+- Each new tree focuses on fixing mistakes made by the previous trees.
+- Over many steps, the model becomes better at detecting patterns.
+
+Simple way to think of it:
+“Predict → see mistakes → learn from mistakes → repeat.”
+
+-----------------------------------------------------------------------
+
+4) Hyperparameter Tuning (making models better)
+We learned that models have settings we choose before training, such as:
+- Number of trees (iterations)
+- Tree depth (how complex each tree is)
+- Learning rate (how big each learning step is)
+
+We studied common tuning strategies:
+A) Grid Search
+- Try all combinations from a fixed list.
+- Can be slow if many combinations exist.
+
+B) Random Search
+- Try random combinations.
+- Often finds good results faster than grid search when there are many parameters.
+
+C) Bayesian Optimization (concept)
+- A smarter search that uses results from earlier tries to choose better next tries.
+
+We also used (and planned to use more) Optuna:
+- Optuna automates hyperparameter tuning by running many trials.
+- It remembers what worked well and keeps searching for better combinations.
+
+-----------------------------------------------------------------------
+
+5) Kaggle-Style Project Plan (how we applied today’s learning)
+Project type:
+- Credit Card Fraud Detection (highly imbalanced dataset)
+
+Planned workflow:
+1. Load dataset and check missing values (ours had no missing values).
+2. Split data into train and validation using Stratified Split
+   - This keeps the fraud ratio similar in both sets.
+3. Train models in this order:
+   - XGBoost → LightGBM → CatBoost
+4. Evaluate models correctly (important for imbalanced data).
+5. Use Optuna to tune hyperparameters for each model to improve performance.
+6. Compare model results and choose the best one.
+
+-----------------------------------------------------------------------
+
+6) Key lesson: Handling Imbalanced Data (fraud is rare)
+Our dataset is extremely imbalanced:
+- Total rows: 284,807
+- Non-fraud: 284,315
+- Fraud: ~492
+
+We learned that for imbalanced data, Accuracy can be misleading.
+Example:
+A model that predicts “non-fraud” for every transaction can still achieve ~99.8% accuracy, but it is useless because it catches 0 fraud.
+
+So we focused on better evaluation metrics:
+- Recall (Fraud Recall): Out of all real fraud cases, how many did we catch?
+- Precision (Fraud Precision): Out of predicted fraud cases, how many were actually fraud?
+- PR-AUC (Precision-Recall AUC): A strong overall score for imbalanced problems.
+
+We also learned practical techniques:
+- Use stratified splitting so both train/validation contain fraud examples.
+- Use class weighting (make fraud examples “more important” during training).
+- Choose a probability threshold (not always 0.5) depending on the goal:
+  - Lower threshold → catch more fraud (higher recall) but more false alarms
+  - Higher threshold → fewer false alarms (higher precision) but may miss fraud
+
+-----------------------------------------------------------------------
+
+7) Tooling and Environment Lesson (VS Code issue)
+We encountered:
+ModuleNotFoundError: No module named 'xgboost'
+
+We learned why this happens in VS Code:
+- Packages may be installed in one Python environment,
+  while the notebook kernel is using a different Python environment.
+
+The fix we learned:
+- Ensure VS Code is using the correct interpreter/kernel.
+- Install packages into the exact kernel Python using:
+  {sys.executable} -m pip install xgboost lightgbm catboost optuna
+- Restart the kernel after installation.
+
+-----------------------------------------------------------------------
+
+8) Outcome of Day 6 (what we can do now)
+By the end of today’s assessment, we can:
+- Explain what tabular data is and why these models dominate it.
+- Understand gradient boosting at a high level.
+- Split imbalanced data correctly using stratified split.
+- Evaluate fraud models with the right metrics (PR-AUC, precision, recall).
+- Train XGBoost, LightGBM, and CatBoost as strong baseline models.
+- Use Optuna to tune hyperparameters and improve performance.
+- Debug common VS Code environment issues when importing ML libraries.
+
+-----------------------------------------------------------------------
+
+Next step (recommended for Day 6 completion)
+- Run baseline models (no tuning first), record metrics.
+- Then tune each model with Optuna and compare improvements.
+- Finally, choose a threshold that matches the goal
+  (maximize recall vs minimize false alarms).
