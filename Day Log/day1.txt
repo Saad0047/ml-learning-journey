@@ -1,0 +1,46 @@
+"# My ML Journey - Day 1" 
+
+On Day 1, I built my foundation in Machine Learning.
+
+I understood the difference between:
+
+* **AI** (the big field of making machines intelligent),
+* **ML** (machines learning from data),
+* **DL** (neural networks handling complex patterns).
+
+I learned the **four types of Machine Learning**:
+
+* Supervised Learning (learning with labeled answers)
+* Unsupervised Learning (finding patterns without answers)
+* Semi-Supervised Learning (mix of labeled and unlabeled data)
+* Reinforcement Learning (learning through rewards and penalties)
+
+I studied the complete **ML workflow**:
+Problem → Data Collection → Data Cleaning → EDA → Model Selection → Training → Evaluation → Tuning → Deployment.
+
+I also understood the **Bias vs Variance tradeoff**:
+
+* Too simple = underfitting
+* Too complex = overfitting
+* Goal = balance for better generalization
+
+On the practical side, I:
+
+* Installed Python and Jupyter Notebook
+* Set up essential ML libraries (pandas, numpy, scikit-learn, matplotlib, seaborn)
+* Created my GitHub ML repository
+* Learned basic Git commands (clone, add, commit, push)
+
+Then I worked on my first real dataset — the Titanic dataset:
+
+* Loaded and explored data
+* Checked missing values
+* Cleaned messy data
+* Visualized survival patterns
+* Analyzed relationships between features
+* Extracted key insights
+
+By the end of Day 1, I moved from just understanding theory to actually applying ML concepts using real data and tools.
+
+Foundation built. 🚀
+
